@@ -98,7 +98,7 @@ type Chat struct {
 `
 	_, err := parseTestStruct(t, "Chat", source)
 	if err == nil {
-		t.Error("expected error for oneof with no variants")
+		t.Fatal("expected error for oneof with no variants")
 	}
 	if !strings.Contains(err.Error(), "at least one variant") {
 		t.Errorf("expected 'at least one variant' error, got: %v", err)
@@ -154,7 +154,7 @@ type Chat struct {
 `
 			_, err := parseTestStruct(t, "Chat", source)
 			if err == nil {
-				t.Error("expected error")
+				t.Fatal("expected error")
 			}
 			if !strings.Contains(err.Error(), tc.wantErr) {
 				t.Errorf("expected error containing %q, got: %v", tc.wantErr, err)
@@ -174,7 +174,7 @@ type Chat struct {
 `
 	_, err := parseTestStruct(t, "Chat", source)
 	if err == nil {
-		t.Error("expected error for duplicate field numbers in oneof")
+		t.Fatal("expected error for duplicate field numbers in oneof")
 	}
 	if !strings.Contains(err.Error(), "duplicate field number") {
 		t.Errorf("expected 'duplicate field number' error, got: %v", err)
@@ -192,7 +192,7 @@ type Chat struct {
 `
 	_, err := parseTestStruct(t, "Chat", source)
 	if err == nil {
-		t.Error("expected error for field number collision between oneof variant and regular field")
+		t.Fatal("expected error for field number collision between oneof variant and regular field")
 	}
 	if !strings.Contains(err.Error(), "duplicate field number") {
 		t.Errorf("expected 'duplicate field number' error, got: %v", err)
@@ -290,7 +290,7 @@ type Chat struct {
 `
 	_, err := parseTestStruct(t, "Chat", source)
 	if err == nil {
-		t.Error("expected error for 'any' field without oneof tag")
+		t.Fatal("expected error for 'any' field without oneof tag")
 	}
 	if !strings.Contains(err.Error(), "interface types are not supported") {
 		t.Errorf("expected 'interface types are not supported' error, got: %v", err)
@@ -306,7 +306,7 @@ type Chat struct {
 `
 	_, err := parseTestStruct(t, "Chat", source)
 	if err == nil {
-		t.Error("expected error for inline interface{} field without oneof tag")
+		t.Fatal("expected error for inline interface{} field without oneof tag")
 	}
 	if !strings.Contains(err.Error(), "interface types are not supported") {
 		t.Errorf("expected 'interface types are not supported' error, got: %v", err)
@@ -373,7 +373,7 @@ type Chat struct {
 		t.Run(tc.name, func(t *testing.T) {
 			_, err := parseTestStruct(t, "Chat", tc.source)
 			if err == nil {
-				t.Error("expected error for invalid oneof field type")
+				t.Fatal("expected error for invalid oneof field type")
 			}
 			if !strings.Contains(err.Error(), tc.wantErr) {
 				t.Errorf("expected error containing %q, got: %v", tc.wantErr, err)
