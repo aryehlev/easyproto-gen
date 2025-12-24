@@ -10,7 +10,7 @@ Use this when you want **protobuf as a binary encoding format** (like JSON, but 
 - You **don't need `.proto` files** or schema sharing with external systems
 - You want to **define types in Go** and derive the wire format from them
 
-This is the protobuf equivalent of using `encoding/json` with struct tags - you define Go structs, add tags, and get serialization for free.
+This is the protobuf equivalent of using `encoding/json` with struct tags - you define Go structs, add tags, and get serialization for free. Unlike `google.golang.org/protobuf`, you don't need to change your types to generated ones. Just add `protobuf` tags to your existing structs and generate the marshal/unmarshal methods.
 
 ### Don't Use This When
 
